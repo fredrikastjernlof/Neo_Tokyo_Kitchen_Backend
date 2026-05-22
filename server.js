@@ -4,6 +4,8 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./src/config/db");
 
+const menuCategoryRoutes = require("./src/routes/menuCategoryRoutes");
+
 // Load enviroment variables
 dotenv.config();
 
@@ -16,6 +18,9 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Routes
+app.use("/api/categories", menuCategoryRoutes);
 
 // Test route
 app.get("/", (req, res) => {
