@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./src/config/db");
 
 const menuCategoryRoutes = require("./src/routes/menuCategoryRoutes");
+const menuItemRoutes = require("./src/routes/menuItemRoutes");
 
 // Load enviroment variables
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/categories", menuCategoryRoutes);
+app.use("/api/menu-items", menuItemRoutes);
 
 // Test route
 app.get("/", (req, res) => {
