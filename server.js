@@ -6,6 +6,7 @@ const connectDB = require("./src/config/db");
 
 const menuCategoryRoutes = require("./src/routes/menuCategoryRoutes");
 const menuItemRoutes = require("./src/routes/menuItemRoutes");
+const authRoutes = require("./src/routes/authRoutes");
 
 // Load enviroment variables
 dotenv.config();
@@ -23,10 +24,11 @@ app.use(express.json());
 // Routes
 app.use("/api/categories", menuCategoryRoutes);
 app.use("/api/menu-items", menuItemRoutes);
+app.use("/api/auth", authRoutes);
 
 // Test route
 app.get("/", (req, res) => {
-    res.json({ message: "🇯🇵 Neo Tokyo Kitchen API is running 🍜🥳"});
+    res.json({ message: "🇯🇵 Neo Tokyo Kitchen API is running 🍜🥳" });
 });
 
 // Set port
