@@ -4,6 +4,9 @@ const express = require("express");
 // create router
 const router = express.Router();
 
+// Import middleware
+const { protect } = require("../middleware/authMiddleware");
+
 
 //Import controller
 const {
@@ -19,14 +22,14 @@ const {
 router
     .route("/")
     .get(getMenuItems)
-    .post(createMenuItem);
+    .post(protect, createMenuItem);
 
 router.get("/category/:slug", getMenuItemsByCategory);
 
 router
   .route("/:id")
   .get(getMenuItemById)
-  .put(updateMenuItem)
-  .delete(deleteMenuItem);
+  .put(protect, updateMenuItem)
+  .delete(protect, deleteMenuItem);
   
 module.exports = router;

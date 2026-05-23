@@ -88,7 +88,9 @@ const deleteMenuCategory = async (req, res) => {
             });
         }
 
-        res.status(200).json(deletedCategory);
+        res.status(200).json({
+            message: "Menu category deleted successfully"
+        });
     } catch (error) {
         res.status(500).json({
             message: "Failed to delete menu category",
