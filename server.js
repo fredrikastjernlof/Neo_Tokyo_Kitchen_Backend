@@ -7,6 +7,7 @@ const connectDB = require("./src/config/db");
 const menuCategoryRoutes = require("./src/routes/menuCategoryRoutes");
 const menuItemRoutes = require("./src/routes/menuItemRoutes");
 const authRoutes = require("./src/routes/authRoutes");
+const bookingRoutes = require("./src/routes/bookingRoutes");
 
 // Load enviroment variables
 dotenv.config();
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use("/api/categories", menuCategoryRoutes);
 app.use("/api/menu-items", menuItemRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 // Test route
 app.get("/", (req, res) => {
