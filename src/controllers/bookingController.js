@@ -1,9 +1,25 @@
 const Booking = require("../models/bookingModel");
 
+// Genereate booking number
+const generateBookingNumber = () => {
+    // Create a random string of 6 characters
+    const randomString = Math.random()
+        .toString(36)
+        .substring(2, 8)
+        .toUpperCase();
+
+    // Return formatted booking number
+    return `NTK-${randomString}`;
+};
+
 // Create booking
 const createBooking = async (req, res) => {
     try {
-        const booking = await Booking.create(req.body);
+        const booking = await Booking.create({
+            ...req.body,
+
+            bookingNumber: generateBookingNumber(),
+        });
 
         res.status(201).json(booking);
     } catch (error) {

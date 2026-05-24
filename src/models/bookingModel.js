@@ -36,6 +36,11 @@ const bookingSchema = new mongoose.Schema(
             required: [true, "Booking start time is required"],
         },
 
+        bookingNumber: {
+            type: String,
+            unique: true,
+        },
+
         durationMinutes: {
             type: Number,
             default: 90,
