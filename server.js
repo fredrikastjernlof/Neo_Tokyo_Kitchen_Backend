@@ -1,7 +1,11 @@
 // Insert packages
+const dotenv = require("dotenv");
+
+// Load enviroment variables
+dotenv.config();
+
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const connectDB = require("./src/config/db");
 
 const menuCategoryRoutes = require("./src/routes/menuCategoryRoutes");
@@ -9,8 +13,6 @@ const menuItemRoutes = require("./src/routes/menuItemRoutes");
 const authRoutes = require("./src/routes/authRoutes");
 const bookingRoutes = require("./src/routes/bookingRoutes");
 
-// Load enviroment variables
-dotenv.config();
 
 // Connect to database
 connectDB();

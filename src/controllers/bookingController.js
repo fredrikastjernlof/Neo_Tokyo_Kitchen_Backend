@@ -1,4 +1,5 @@
 const Booking = require("../models/bookingModel");
+const { sendBookingConfirmation } = require("../services/emailService");
 
 // Genereate booking number
 const generateBookingNumber = () => {
@@ -20,6 +21,9 @@ const createBooking = async (req, res) => {
 
             bookingNumber: generateBookingNumber(),
         });
+
+        // Send booking confirmation email
+        await sendBookingConfirmation(booking);
 
         res.status(201).json(booking);
     } catch (error) {
