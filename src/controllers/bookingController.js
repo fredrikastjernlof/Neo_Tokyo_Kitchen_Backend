@@ -1,5 +1,8 @@
 const Booking = require("../models/bookingModel");
-const { sendBookingConfirmation } = require("../services/emailService");
+const {
+    sendBookingConfirmation,
+    sendBookingCancellation,
+} = require("../services/emailService");
 
 // Genereate booking number
 const generateBookingNumber = () => {
@@ -73,6 +76,16 @@ const getBookingById = async (req, res) => {
 // Update booking by id
 const updateBooking = async (req, res) => {
     try {
+        // Find current booking before update
+        const existingBooking = await Booking.findById(req.params.id);
+
+        if (!existingBooking) {
+            return res.status(404).json({
+                message: "Booking not found",
+            });
+        }
+
+        // Update booking
         const updatedBooking = await Booking.findByIdAndUpdate(
             req.params.id,
             req.body,
@@ -82,13 +95,16 @@ const updateBooking = async (req, res) => {
             }
         );
 
-        if (!updatedBooking) {
-            return res.status(404).json({
-                message: "Booking not found",
-            });
+        // Send cancellation email only when status changes to cancelled
+        if (
+            req.body.status === "cancelled" &&
+            existingBooking.status !== "cancelled"
+        ) {
+            await sendBookingCancellation(updatedBooking);
         }
 
         res.status(200).json(updatedBooking);
+
     } catch (error) {
         res.status(400).json({
             message: "Failed to update booking",
