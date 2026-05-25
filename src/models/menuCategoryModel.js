@@ -35,7 +35,7 @@ const menuCategorySchema = new mongoose.Schema(
             },
             altText: {
                 type: String,
-                required: [true, "Image alt text is required"],
+                default: "",
                 trim: true,
             },
         },

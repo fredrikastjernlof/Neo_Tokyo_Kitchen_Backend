@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 // Load enviroment variables
 dotenv.config();
 
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./src/config/db");
@@ -23,6 +24,9 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve uploaded images
+app.use("/uploads", express.static(path.join(__dirname, "src/uploads")));
 
 // Routes
 app.use("/api/categories", menuCategoryRoutes);

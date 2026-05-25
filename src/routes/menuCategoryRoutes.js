@@ -4,8 +4,9 @@ const express = require("express");
 // Create router
 const router = express.Router();
 
-// Import middleware
+// Import middlewares
 const { protect } = require("../middleware/authMiddleware");
+const upload = require("../middleware/uploadMiddleware");
 
 // Import controller
 const {
@@ -14,6 +15,7 @@ const {
     getMenuCategoryById,
     updateMenuCategory,
     deleteMenuCategory,
+    uploadCategoryImage,
 } = require("../controllers/menuCategoryController");
 
 // Routes
@@ -27,6 +29,10 @@ router
     .get(getMenuCategoryById)
     .put(protect, updateMenuCategory)
     .delete(protect, deleteMenuCategory);
+
+router
+    .route("/:id/image")
+    .post(protect, upload.single("image"), uploadCategoryImage);
 
 // Export router
 module.exports = router;
