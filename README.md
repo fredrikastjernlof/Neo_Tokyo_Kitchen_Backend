@@ -342,6 +342,14 @@ Projektet använder:
 
 ---
 
+## 🌐 Publicering
+
+Webbtjänsten är publicerad via Render och använder MongoDB Atlas som databas.
+
+[Öppna webbtjänst](https://neo-tokyo-kitchen-api.onrender.com/)
+
+---
+
 # ✅🙌 Det här tar jag med mig från projektet
 
 Under detta projekt har jag arbetat med att bygga ett större backend-system med fokus på struktur, autentisering, bokningslogik och relationsdata.
