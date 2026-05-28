@@ -25,8 +25,18 @@ const createBooking = async (req, res) => {
             bookingNumber: generateBookingNumber(),
         });
 
-        // Send booking confirmation email
-        await sendBookingConfirmation(booking);
+        // Try to send booking confirmation email
+        // If email fails, the booking should still be created
+        try {
+            await sendBookingConfirmation(booking);
+
+            console.log("Booking confirmation email sent");
+        } catch (emailError) {
+            console.error(
+                "Booking confirmation email failed:",
+                emailError.message
+            );
+        }
 
         res.status(201).json(booking);
     } catch (error) {
