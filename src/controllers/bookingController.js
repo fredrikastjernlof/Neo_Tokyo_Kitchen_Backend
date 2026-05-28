@@ -26,11 +26,13 @@ const createBooking = async (req, res) => {
         });
 
         // Try to send booking confirmation email
-        // If email fails, the booking should still be created
+        // Disabled on Render because SMTP times out
         try {
-            await sendBookingConfirmation(booking);
 
-            console.log("Booking confirmation email sent");
+            // await sendBookingConfirmation(booking);
+
+            console.log("Booking confirmation email skipped");
+
         } catch (emailError) {
             console.error(
                 "Booking confirmation email failed:",
