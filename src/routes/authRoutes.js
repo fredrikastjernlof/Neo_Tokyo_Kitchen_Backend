@@ -10,9 +10,11 @@ const {
     loginUser,
 } = require("../controllers/authController");
 
-// Routes
-router.post("/register", registerUser);
-router.post("/login", loginUser);
+// Import middleware
+const { protect, adminOnly } = require("../middleware/authMiddleware");
 
+// Routes
+router.post("/register", protect, adminOnly, registerUser);
+router.post("/login", loginUser);
 // Export router
 module.exports = router;

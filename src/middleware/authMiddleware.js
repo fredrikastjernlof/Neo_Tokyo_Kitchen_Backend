@@ -21,17 +21,28 @@ const protect = async (req, res, next) => {
 
       next();
     } catch (error) {
-      res.status(401).json({
+     return res.status(401).json({
         message: "Not authorized, token failed",
       });
     }
   }
 
   if (!token) {
-    res.status(401).json({
+    return res.status(401).json({
       message: "Not authorized, no token",
     });
   }
 };
 
-module.exports = { protect };
+// Allow only admin users
+const adminOnly = (req, res, next) => {
+    if (req.user && req.user.role === "admin") {
+        return next();
+    }
+
+    return res.status(403).json({
+        message: "You do not have permission to add users",
+    });
+};
+
+module.exports = { protect, adminOnly };
