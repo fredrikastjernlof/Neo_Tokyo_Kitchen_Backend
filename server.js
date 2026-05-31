@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const path = require("path");
+const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./src/config/db");
@@ -14,6 +15,9 @@ const menuItemRoutes = require("./src/routes/menuItemRoutes");
 const authRoutes = require("./src/routes/authRoutes");
 const bookingRoutes = require("./src/routes/bookingRoutes");
 
+// Make sure upload folders exist
+fs.mkdirSync("src/uploads/temp", { recursive: true });
+fs.mkdirSync("src/uploads/categories", { recursive: true });
 
 // Connect to database
 connectDB();

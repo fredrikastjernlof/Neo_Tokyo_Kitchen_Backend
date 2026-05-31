@@ -47,7 +47,7 @@ const menuCategorySchema = new mongoose.Schema(
 
         isActive: {
             type: Boolean,
-            dafault: true,
+            default: true,
         },
     },
     {
