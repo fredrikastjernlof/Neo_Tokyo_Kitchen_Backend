@@ -287,6 +287,91 @@ I projektet används Nodemailer tillsammans med Gmail SMTP för att skicka autom
 
 ---
 
+### Exempel på request body
+
+#### Skapa kategori
+
+POST `/api/categories`
+
+```json
+{
+  "name": "Ramen",
+  "slug": "ramen",
+  "description": "Traditionella japanska nudelsoppor."
+}
+```
+
+#### Skapa menyrätt
+
+POST `/api/menu-items`
+
+```json
+{
+  "name": "Tonkotsu Ramen",
+  "description": "Fläskbuljong med nudlar och ägg.",
+  "category": "<kategori-id>",
+  "price": 159,
+  "protein": "pork",
+  "spiceLevel": 1,
+  "isAvailable": true
+}
+```
+
+Ersätt `<kategori-id>` med ID från en befintlig kategori.
+
+#### Skapa bokning
+
+POST `/api/bookings`
+
+```json
+{
+  "name": "Anna Andersson",
+  "email": "anna@example.se",
+  "phone": "0701234567",
+  "guests": 4,
+  "startTime": "2026-06-15T18:00:00.000Z"
+}
+```
+
+#### Skapa personal
+
+POST `/api/auth/register`
+
+```json
+{
+  "name": "Erik Svensson",
+  "email": "erik@example.se",
+  "password": "password123",
+  "role": "staff"
+}
+```
+
+#### Skapa administratör
+
+POST `/api/auth/register`
+
+```json
+{
+  "name": "Maria Johansson",
+  "email": "maria@example.se",
+  "password": "password123",
+  "role": "admin"
+}
+```
+
+#### Logga in
+
+POST `/api/auth/login`
+
+```json
+{
+  "email": "admin@example.se",
+  "password": "password123"
+}
+```
+
+---
+
 # 📁 Installation (lokalt)
 
 ## 1. Klona repositoryt
