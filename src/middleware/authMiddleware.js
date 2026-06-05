@@ -41,7 +41,7 @@ const adminOnly = (req, res, next) => {
     }
 
     return res.status(403).json({
-        message: "You do not have permission to add users",
+        message: "You are not authorized to perform this action",
     });
 };
 
