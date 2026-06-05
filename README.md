@@ -191,6 +191,8 @@ Skyddade routes kräver:
 Authorization: Bearer TOKEN
 ```
 
+Endast användare med rollen `admin` får registrera, visa och ta bort användare.
+
 ---
 
 # 📧 E-postfunktionalitet
@@ -202,6 +204,8 @@ I projektet används Nodemailer tillsammans med Gmail SMTP för att skicka autom
 - bokningsbekräftelse vid skapad bokning
 - avbokningsbekräftelse vid statusändring till `cancelled`
 
+> **Obs:** Mailfunktionaliteten finns implementerad med Nodemailer, men utskick av bokningsbekräftelse är för närvarande bortkommenterat i controller-koden eftersom SMTP-anrop orsakar timeout i den publicerade Render-miljön.
+
 ---
 
 # 🔁 Funktionalitet (CRUD)
@@ -210,6 +214,8 @@ I projektet används Nodemailer tillsammans med Gmail SMTP för att skicka autom
 
 - registrera användare
 - logga in användare
+- hämta alla användare
+- ta bort användare
 - skapa JWT-token
 
 ## 📂 Categories
@@ -246,7 +252,8 @@ I projektet används Nodemailer tillsammans med Gmail SMTP för att skicka autom
 |---|---|---|
 | POST | `/api/auth/register` | Registrera admin/staff |
 | POST | `/api/auth/login` | Logga in användare |
-
+| GET | `/api/auth/users` | Hämta alla användare |
+| DELETE | `/api/auth/users/:id` | Ta bort användare |
 ---
 
 ## 📂 Categories
