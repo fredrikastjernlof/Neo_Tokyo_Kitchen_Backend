@@ -12,9 +12,9 @@ Backend-systemet ansvarar för:
 - hantering av menykategorier och menyobjekt
 - bordsbokningar
 - statushantering för bokningar
-- e-postbekräftelser
 - skyddade admin-routes
 - kommunikation med MongoDB Atlas
+- e-postbekräftelser (inaktiverat i publicerad miljö)
 
 ---
 
